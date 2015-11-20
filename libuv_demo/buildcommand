@@ -1,0 +1,3 @@
+
+$g++ -c test.cc -o build/test.o
+$g++ -luv -pthread -o test build/test.o /usr/lib/libuv.a
