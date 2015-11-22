@@ -1,0 +1,6 @@
+$gcc get_post.c -o get_post -lcurl
+$./get_post
+
+
+$gcc get_http.c -o get_http -lcurl
+$get_http www.baidu.com
