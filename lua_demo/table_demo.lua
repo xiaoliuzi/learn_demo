@@ -4,3 +4,10 @@ print(a[9])   -->18
 a["x"] = 10
 print(a["x"]) -->10
 print(a["y"]) --> nil
+
+a = {}
+x = "y"
+a[x] = 10
+print(a[x])
+print(a.x)
+print(a.y)
