@@ -1,0 +1,2 @@
+$gcc -luv -pthread -o client echo_client.c /usr/lib/libuv.a
+$gcc -luv -pthread -o server echo_server.c /usr/lib/libuv.a
