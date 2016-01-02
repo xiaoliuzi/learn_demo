@@ -40,7 +40,7 @@ void on_connect(uv_connect_t *req, int status) {
         uv_stream_t *client = req->handle;
         uv_write_t *reqWrite = (uv_write_t*)malloc(sizeof(uv_write_t));
 
-        char *str ="hello shabi libuv";
+        char *str ="hello libuv";
         uv_buf_t wrbuf = uv_buf_init(str, strlen(str));
         uv_write(reqWrite, client, &wrbuf, 1, echo_write);
 
