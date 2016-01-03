@@ -31,7 +31,7 @@ void echo_write(uv_write_t *req, int status)
         free(req);
 }
 
-
+// call back function
 void on_connect(uv_connect_t *req, int status) {
         if (status < 0) {
                 fprintf(stderr, "New connection error %s\n", uv_strerror(status));
@@ -53,7 +53,7 @@ int main()
         uv_tcp_init(loop, socket);
 
         uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
-
+		//
         struct sockaddr_in dest;
         uv_ip4_addr("127.0.0.1", 7000, &dest);
         uv_tcp_connect(connect, socket,(struct sockaddr*)&dest, on_connect);
