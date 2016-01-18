@@ -48,15 +48,22 @@ void on_connect(uv_connect_t *req, int status) {
 
 int main()
 {
-        loop = uv_default_loop();
-        uv_tcp_t* socket = (uv_tcp_t*)malloc(sizeof(uv_tcp_t));
-        uv_tcp_init(loop, socket);
+    loop = uv_default_loop();
+    uv_tcp_t* socket = (uv_tcp_t*)malloc(sizeof(uv_tcp_t));
+    uv_tcp_init(loop, socket);
 
-        uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
-		//
-        struct sockaddr_in dest;
-        uv_ip4_addr("127.0.0.1", 7000, &dest);
-        uv_tcp_connect(connect, socket,(struct sockaddr*)&dest, on_connect);
-        uv_run(loop, UV_RUN_DEFAULT);
+    uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
+	//
+    struct sockaddr_in dest;
+    uv_ip4_addr("127.0.0.1", 7000, &dest);
+    uv_tcp_connect(connect, socket,(struct sockaddr*)&dest, on_connect);
+    uv_run(loop, UV_RUN_DEFAULT);
+
+	uv_loop_close(socket);
+	uv_loop_close(connect);
+	free(socket);
+	free(connect);
+
+	return 0;
 }
 
