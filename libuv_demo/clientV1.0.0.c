@@ -49,7 +49,8 @@ void echo_write(uv_write_t *req, int status)
 
 
 void do_write_action(uv_stream_t* client, char *content, uv_write_cb on_write_cb) {
-        uv_write_t *req_write = (uv_write_t*) malloc(sizeof(strlen(content)));
+        //uv_write_t *req_write = (uv_write_t*) malloc(sizeof(strlen(content)));
+        uv_write_t *req_write = (uv_write_t*) malloc(sizeof(uv_write_t));
         uv_buf_t wrbuf = uv_buf_init(content, strlen(content));
         uv_write(req_write, client, &wrbuf, 1, on_write_cb);
 }
@@ -63,12 +64,15 @@ void on_connect(uv_connect_t *req, int status) {
 /*
         uv_write_t *reqWrite = (uv_write_t*)malloc(sizeof(uv_write_t));
 
-
         char str[SIZE];
         uv_buf_t wrbuf = uv_buf_init(str, strlen(str));
         uv_write(reqWrite, client, &wrbuf, 1, echo_write);
 */
+		printf("debug1\n");
+		printf("debug2\n");
+		
         do_write_action(client, "wrie the content!", echo_write);
+		
 }
 
 int main()
@@ -84,4 +88,3 @@ int main()
         uv_tcp_connect(connect, socket,(struct sockaddr*)&dest, on_connect);
         uv_run(loop, UV_RUN_DEFAULT);
 }
-                             
